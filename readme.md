@@ -60,12 +60,11 @@ users: [
 
 # steps
 
-1) created server(back)
-2) created client(front)
-3) created db
-4) installed dependencies
-5) created forms
-6) setup user authentication
+1) installed dependencies
+2) created server(back)
+3) created client(front)
+4) created db
+5) setup user authentication
 6) setup user authorization
 
 # user stories
