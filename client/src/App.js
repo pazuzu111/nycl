@@ -35,6 +35,29 @@ class App extends Component {
         }).catch(err => console.log(err))
     }
 
+    handleLoginSubmit = (e, data) => {
+        e.preventDefault()
+
+        fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({
+                auth: res.auth,
+                authAdmin: res.authAdmin,
+                user: res.data.user,
+                blockUser: res.blockUser
+            })
+              console.log('after db check',res.user)
+        }).catch(err => console.log(err))
+    }
+
     handleRegisterSubmit = (e, data) => {
         e.preventDefault()
 
@@ -59,6 +82,20 @@ class App extends Component {
     }
 
   render() {
+    let login = <Route exact path='/login' render={() => (
+                  this.state.auth
+                    ?
+                    (this.state.auth ?
+                            <Redirect to='/dashboard' />
+                            :
+                            <Login handleLoginSubmit={this.handleLoginSubmit} />)
+                    :
+                    (this.state.authAdmin ?
+                            <Redirect to='/admindashboard' />
+                            :
+                            <Login handleLoginSubmit={this.handleLoginSubmit} />)
+                )} />
+
     let register = <Route exact path='/register' render={() => (
                         (this.state.auth || this.state.authAdmin)?
                                 <Redirect to='/dashboard' />
@@ -67,6 +104,7 @@ class App extends Component {
                     )} />
     return (
       <div className="App">
+        {login}
         {register}
 
       </div>
