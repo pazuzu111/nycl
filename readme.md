@@ -58,7 +58,7 @@ users: [
 - node/express
 - psql
 
-# depedencies
+# dependencies
 
 ```sh
 "dependencies": {
