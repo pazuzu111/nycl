@@ -52,14 +52,20 @@ users: [
 }
 }
 ```
+# stack
+
+- React
+- node/express
+- psql
 
 # steps
 
 1) created server(back)
 2) created client(front)
-3) installed dependencies
-4) created forms
-5) setup user authentication
+3) created db
+4) installed dependencies
+5) created forms
+6) setup user authentication
 6) setup user authorization
 
 # user stories
