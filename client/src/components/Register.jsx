@@ -10,9 +10,11 @@ export default class Register extends Component {
         }
   }
 
+    //pull input values & setState
     handleInputChange = (e) => {
         const name = e.target.name
         const val = e.target.value
+
         this.setState({
             [name]: val
         })

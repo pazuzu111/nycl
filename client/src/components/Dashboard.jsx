@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = (props) => {
+const Dashboard = props => {
     return (
         <div>
             <h1>Hello {props.user.username}</h1>

@@ -1,9 +1,11 @@
+//log query in terminal
 const options = {
   query: (e) => {
     console.log(e.query)
   }
 }
 
+//interface for psql allowing powerful query-formatting...etc
 const pgp = require('pg-promise')(options)
 
 function setDatabase() {
@@ -24,4 +26,5 @@ function setDatabase() {
 
 const db = setDatabase()
 
+//export db for use in other files
 module.exports = db

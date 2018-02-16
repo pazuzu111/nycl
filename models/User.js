@@ -1,11 +1,14 @@
+//import database form config.js
 const db = require('../db/config')
 
 const User = {}
 
+//findall users by sending query to db
 User.findAll = () => {
   return db.query(`SELECT * FROM users`)
 }
 
+//find user by user name by sending query to db
 User.findByUserName = userName => {
   return db.oneOrNone(
    `SELECT * FROm users
@@ -13,6 +16,7 @@ User.findByUserName = userName => {
     [userName])
 }
 
+//create user by sending query to db
 User.create = user => {
   return db.one(
    `INSERT INTO users
@@ -22,6 +26,7 @@ User.create = user => {
     [user.username, user.email, user.password_digest])
 }
 
+//update user by sending query to db
 User.update = (user, id) => {
   return db.one(
     `UPDATE users SET
@@ -31,7 +36,7 @@ User.update = (user, id) => {
     [user.block, id])
 }
 
-
+//destroy user by sending query to db
 User.destroy = (id) => {
   return db.none(
     `DELETE FROM users
@@ -39,4 +44,5 @@ User.destroy = (id) => {
     [id])
 }
 
+//export user model for use in other files
 module.exports = User

@@ -1,8 +1,7 @@
 import React from 'react'
-
 import { Link } from 'react-router-dom'
 
-function Header (props) {
+const Header = props => {
   return (
     <header>
         <nav>

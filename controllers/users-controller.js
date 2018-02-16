@@ -1,8 +1,9 @@
-const bcrypt = require('bcryptjs')
-const User = require('../models/User.js')
+const bcrypt = require('bcryptjs')//password hasing
+const User = require('../models/User.js')//models pulled from model file
 
 const usersController = {}
 
+//use User model to find all users & respond with JSON
 usersController.index = (req, res, next) => {
   User.findAll()
   .then(users => {
@@ -15,6 +16,7 @@ usersController.index = (req, res, next) => {
   }).catch(next)
 }
 
+//use User model to create user & respond with JSON
 usersController.create = (req, res, next) => {
   const salt = bcrypt.genSaltSync()
   const hash = bcrypt.hashSync(req.body.password, salt)
@@ -38,6 +40,7 @@ usersController.create = (req, res, next) => {
   }).catch(next)
 }
 
+//use User model to update access user & respond with JSON
 usersController.update = (req, res, next) => {
   User.update({
     block: req.body.block
@@ -51,6 +54,7 @@ usersController.update = (req, res, next) => {
   }).catch(next)
 }
 
+//use User model to destroy user & respond with JSON
 usersController.delete = (req, res, next) => {
   User.destroy(req.params.id)
   .then(() => {
@@ -59,4 +63,6 @@ usersController.delete = (req, res, next) => {
     })
   }).catch(next)
 }
+
+//export controller for use in other files
 module.exports = usersController

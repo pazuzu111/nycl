@@ -9,9 +9,11 @@ export default class Login extends Component {
         }
     }
 
+    //pull values from inputs and setState
     handleInputChange = (e) => {
       const name = e.target.name
       const val = e.target.value
+
       this.setState({
         [name]: val
       })

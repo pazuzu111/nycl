@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 export default class AdminDashboard extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
             dataloaded1:false,
@@ -10,10 +10,12 @@ export default class AdminDashboard extends Component {
         }
     }
 
+    //fetch users on mount
     componentDidMount() {
         this.fetchUsers()
     }
 
+    //fetch users, setState, & catch any errors
     fetchUsers = () => {
         fetch('/api/users')
         .then(res => res.json())
@@ -26,6 +28,7 @@ export default class AdminDashboard extends Component {
         }).catch(err => console.log(err))
     }
 
+    //delete user, fetch users to update dom, & catch any errors
     deleteUser = (id) => {
         fetch(`/api/users/${id}`, {
           method: 'DELETE',
@@ -38,6 +41,7 @@ export default class AdminDashboard extends Component {
         }).catch(err => console.log(err))
     }
 
+    //block user access, fetch to update dom, & catch any errors
     blockUser = (e, id) => {
         e.preventDefault()
 
@@ -57,6 +61,7 @@ export default class AdminDashboard extends Component {
 
     render() {
 
+        //filter out admin and then map through users data
         const users = this.state.dataloaded1 ?
             this.state.data1.filter(x => x.username !== "admin").map(x => {
                 return (
