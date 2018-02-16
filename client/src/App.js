@@ -1,18 +1,55 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+
+//components
+import Header from './components/Header'
+import Login from './components/Login'
+import Register from './components/Register'
 import './App.css';
 
 class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            auth: false,
+            authAdmin: false,
+            user: [],
+            data: null,
+            blockUser: false
+        }
+    }
+
+    componentDidMount() {
+
+    }
+
+    handleRegisterSubmit = (e, data) => {
+        e.preventDefault()
+
+        fetch('/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            this.setState({
+                auth: res.auth,
+                authAdmin: res.authAdmin,
+                user: res.data.user,
+                data: res.data.users
+            })
+        }).catch(err => console.log(err))
+    }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
       </div>
     );
   }
