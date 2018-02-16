@@ -42,7 +42,7 @@ export default class App extends Component {
 
     //send request to server to be verified & setState with response
     handleLoginSubmit = (e, data) => {
-        e.preventDefault()
+        e.preventDefault()//prevent usual redirect behavior
 
         fetch('/api/auth/login', {
           method: 'POST',
@@ -110,7 +110,7 @@ export default class App extends Component {
                     //if user auth is present
                     this.state.auth
                     ?
-                    //if user enter this test otherwise it is a admin
+                    //if user is present enter this test otherwise it is a admin
                     (this.state.auth ?
                             <Redirect to='/dashboard' />
                             :
