@@ -64,4 +64,4 @@ users: [
 
 # user stories
 
-admin can sign in and choose to delete or block a users access ot the site
+admin can sign in and choose to delete or block a users access to the site
