@@ -26,6 +26,34 @@ export default class AdminDashboard extends Component {
         }).catch(err => console.log(err))
     }
 
+    deleteUser = (id) => {
+        fetch(`/api/users/${id}`, {
+          method: 'DELETE',
+          credentials: 'include',
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            this.fetchUsers()
+        }).catch(err => console.log(err))
+    }
+
+    blockUser = (e, id) => {
+        e.preventDefault()
+
+        fetch(`/api/users/${id}`, {
+          method: 'PUT',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res)
+          this.fetchUsers()
+        }).catch(err => console.log(err))
+    }
 
     render() {
 
