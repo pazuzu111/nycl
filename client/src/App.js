@@ -20,7 +20,19 @@ class App extends Component {
     }
 
     componentDidMount() {
-
+        fetch('/api/auth/verify', {
+          credentials: 'include'
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({
+                auth: res.auth,
+                authAdmin: res.authAdmin,
+                user: res.data.user,
+                data: res.data.users,
+                blockUser: res.blockUser
+            })
+        }).catch(err => console.log(err))
     }
 
     handleRegisterSubmit = (e, data) => {
@@ -47,8 +59,15 @@ class App extends Component {
     }
 
   render() {
+    let register = <Route exact path='/register' render={() => (
+                        (this.state.auth || this.state.authAdmin)?
+                                <Redirect to='/dashboard' />
+                                :
+                                <Register handleRegisterSubmit={this.handleRegisterSubmit} />
+                    )} />
     return (
       <div className="App">
+        {register}
 
       </div>
     );
