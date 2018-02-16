@@ -33,11 +33,11 @@ app.get('/', (req, res) => {
   res.send('go to /api/users to see users object')
 })
 
-// const authRoutes = require('./routes/auth-routes')
-// app.use('/api/auth', authRoutes)
+const authRoutes = require('./routes/auth-routes')
+app.use('/api/auth', authRoutes)
 
-// const userRoutes = require('./routes/user-routes')
-// app.use('/api/users', userRoutes)
+const userRoutes = require('./routes/user-routes')
+app.use('/api/users', userRoutes)
 
 app.use('*', (req, res) => {
   res.status(400).json({
