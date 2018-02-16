@@ -81,6 +81,20 @@ class App extends Component {
         }).catch(err => console.log(err))
     }
 
+    logout = () => {
+
+        fetch('/api/auth/logout', {
+          credentials: 'include'
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.setState({
+                auth: res.auth,
+                authAdmin: res.authAdmin
+            })
+          }).catch(err => console.log(err))
+    }
+
   render() {
     let login = <Route exact path='/login' render={() => (
                   this.state.auth
