@@ -16,7 +16,19 @@ authRouter.post('/login', passport.authenticate('local', {
 authRouter.get('/verify', (req, res) => {
   console.log('hello',req.user.username)
 
- if(req.user.username !== 'admin' )
+  if(req.user.username === 'admin')
+  {
+     return res.status(200).json({
+      message: 'admin logged in!',
+      auth: false,
+      authAdmin: true,
+      data: {
+        user: req.user
+      }
+    })
+
+  }
+  else if(req.user.username !== 'admin' )
   {
 
     User.findByUserName(req.user.username)
