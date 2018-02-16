@@ -58,6 +58,22 @@ users: [
 - node/express
 - psql
 
+# depedencies
+
+```sh
+"dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg-promise": "^7.3.1"
+  }
+```
 # steps
 
 1) installed dependencies
